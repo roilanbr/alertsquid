@@ -1,0 +1,33 @@
+- Configurar la variables basicas
+--------------------------------------------------------------------------------
+# Ajustes varios
+workDir="/home/roi/Documents/proyect/alertsquid" # Directorio de trabajo
+logFile="./logs/alertsquid.log"                  # Ruta al archivo "alertsquid.log"
+tmpFile="./tmp/tmpsquid.log"                     # Ruta al archivo "tmp.log"
+csvFile="./tmp/tmpsquid.csv"                     # Ruta al archivo "tmp.log"
+timeWait=5                                       # Tiempo de espera en segundos
+
+# Ajuste de correo
+userEmail="telematica1@ltu.eicma.cu.cu" # Destinatario de correo
+passEmail="user_pass"                   # Destinatario de correo
+serverEmail="gmail.com"                 # Destinatario de correo
+portEmail=587                           # Destinatario de correo
+recipientEmmail="admin@ltu.eicma.cu.cu"
+
+# Ajustes XMPP
+userXMPP="telematica1"                   # Usuario del servidor XMPP
+passXMPP="rbr"                           # Contraseña del usuario
+serverXMPP="ltu.eicma.cu"                # Servidor XMPP
+portXMPP=5222                            # Puerto del Servidor
+recipientXMPP="telematica1@ltu.eicma.cu" # Destinatario del mensaje separado por espacio
+
+
+- ir al directorio de trabajo
+- Crear las diferentes funciones
+ * Función para saver si un paquete está instalado
+ * Función para trabajar con los segundos UTC, los segundos comienzan desde el 01 enero del 1970, formato de salida yyy-mm-dd_hh:mm:ss
+ * Función para trabajar con los nanosegundos 1000 nanosegundos = 1 segundo
+ * Calcular los bytes a entendible por humanos. Maximo unidad de medida en  PetaByte(PB)
+ * Función convertir los registro a formato CSV
+ * Funcion para trabajar con los Registros
+ * 

@@ -1,0 +1,9 @@
+.tmp/
+bin/
+include/
+lib/
+lib64
+-access.log
+alertsquid-todoenuno.sh
+pyvenv.cfg
+
