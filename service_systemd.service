@@ -1,0 +1,14 @@
+[Unit]
+Description=Service alertsquid
+After=squid.service
+ 
+[Service]
+Type=simple
+ExecStart=/opt/alertsquid/alertsquid.py
+WorkingDirectory=/opt/alertsquid
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+ 
+[Install]
+WantedBy=multi-user.target

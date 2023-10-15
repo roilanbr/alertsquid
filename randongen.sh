@@ -21,7 +21,7 @@ while true
     ip3="http://133.0.0.3/virus"
     ip4="http://144.0.0.4/game"
     ip5="http://155.0.0.5/video"
-    url=($sex $porn $xvideo $rbr $virus $info $tecno $game $video $ip1 $ip2 $ip3 $ip4 $ip5)
+    url=("$sex" "$porn" "$xvideo" "$rbr" "$virus" "$info" "$tecno" "$game" "$video" "$ip1" "$ip2" "$ip3" "$ip4" "$ip5")
     ranNum=$[RANDOM%${#url[@]}]
     # curl -s -m 1 ${url[$ranNum]}
     curl -m 1 ${url[$ranNum]}
