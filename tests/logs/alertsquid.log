@@ -1,0 +1,6 @@
+1612927090.099  12345 192.168.4.4 TCP_MISS/200   1024  GET     http://ftp.debian.org/debian - DIRECT text/html
+1612937090.099  12345 192.168.0.1 TCP_MISS/200   1024  GET     http://ftp.debian.org/debian - DIRECT text/html
+1779240248.352  55146 192.168.1.1 TCP_TUNNEL/200 2048  CONNECT https://www.youtube.com/test - DIRECT text/html
+1779250248.352  55146 192.168.2.2 TCP_DENIED/403 5120  CONNECT https://www.telegram.org/api - DIRECT text/html
+1779260248.352  55146 192.168.3.3 TCP_MISS_ABORTED/200   4096  CONNECT https://www.telegram.org/api - DIRECT text/html
+1779270248.352  55146 172.16.78.1 TCP_DENIED/403 5120  CONNECT https://www.telegram.org/api - DIRECT text/html
