@@ -1,7 +1,9 @@
-import os           # Misceláneas del sistema operativo
+import os                       # Misceláneas del SO
+import subprocess               # Capturar salida de comandos de SO
 import sys
-import tomllib      # Procesar archivos .toml
-import time         # Manejo a fecha, hora y conversiones
+import tomllib                  # Procesar archivos .toml
+import time                     # Manejo de fecha y cuenta atras (countdown)
+from datetime import datetime   # Manejo de fecha (más moderno)
 from ipaddress import ip_address, ip_network    # Manejo de direcciones IP
 import urllib.request
 import urllib.parse
@@ -16,7 +18,6 @@ WARN  = f"[{CY} WARN  {NC}]"
 INFO  = f"[{CB} INFO  {NC}]"
 SEND  = f"[{CB} SEND  {NC}]"
 DEBUG = f"[{CY} DEBUG {NC}]"
-
 
 #################################################
 #                   CLASS
@@ -267,24 +268,19 @@ def main():
                 no_record_format = 0
                 for item in record_list:
 
-                    # print(f"0 timestamp    : {item.split()[0]}")
-                    # print(f"2 client_ip_log: {item.split()[2]}")
-                    # print(f"3 status       : {item.split()[3]}")
-                    # print(f"4 bytes        : {item.split()[4]}")
-                    # print(f"6 url_dst: {item.split()[6]}")
-                    # exit()
-
                     # ...............................................
                     # Formatear timestamp
                     # ...............................................
-                    timestamp = float(item.split()[0])
-                    timestamp = time.localtime(int(timestamp))		           # Convertir en una estructura de tiempo
-                    timestamp = time.strftime('%Y/%m/%d %H:%M', timestamp) # Formatear fecha
+
+                    timestamp = int(item.split(".")[0])
+                    timestamp = datetime.fromtimestamp(timestamp, tz=None) # Convertir a fecha
+                    timestamp = timestamp.strftime("%Y-%m-%d %H:%M") # Fecha formateada
+
                     date  = timestamp.split()[0]
-                    hour  = timestamp.split()[0]
-                    year  = date.split("/")[0]
-                    month = date.split("/")[1]
-                    day   = date.split("/")[2]
+                    hour  = timestamp.split()[1]
+                    year  = date.split("-")[0]
+                    month = date.split("-")[1]
+                    day   = date.split("-")[2]
 
                     # ...............................................
                     # Formatear IP del cliente
@@ -389,8 +385,6 @@ def main():
                 # all_message = f"{all_message_outbox} {all_message}"
                 all_message = f"{all_message}"
                 with open(file_outbox, 'w') as f: f.write(f"{all_message}")
-
-
 
             # Reestablecer los registro a 0
             show_verbose(f"{DEBUG} Reestablecer registros a 0", argv_verbose)
