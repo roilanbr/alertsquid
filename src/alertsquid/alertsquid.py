@@ -74,6 +74,10 @@ Ayuda de Alertsquid
 =================================================
 {CG}-h, --help{NC}    Mostrar esta ayuda
 {CG}-v, --verbose{NC} Mostar detalles
+
+Archivos:
+    {CY}ip2name.conf{NC}  : Archivo para convertir de ip a nombre de PC
+    {CY}ip2ignore.conf{NC}: Archivo para ignorar de la alerta las IP o RED
 """
 # Lista de argumentos
 argv_list = ['-h', '--help', '-v', '--verbose']
@@ -133,6 +137,7 @@ token = "tu_token_para_la_api_de_telegram"
 # Bot chat id
 chat_id = chat_id_donde_enviar_mensaje
 '''
+
 ip2name_text = '# Clientes sala A  \nPC1 192.168.0.21 \nPC2 192.168.0.22'
 ip2ignore_text = f'192.168.0.21 \t# Ignorar host \n192.168.50.0/24 # Ignorar red'
 
@@ -143,7 +148,7 @@ if not os.path.exists(file_ip2name)  :
     with open(file_outbox, "w", encoding='utf-8') as f: f.write(ip2name_text)
 if not os.path.exists(file_ip2ignore):
     with open(file_outbox, "w", encoding='utf-8') as f: f.write(ip2ignore_text)
-exit()
+
 # Cargar variables del archivo de configuración
 Module.check_file_exist(file_conf)
 with open(file_conf, "rb") as f:
@@ -178,7 +183,6 @@ def f_load_db(file):
 def main():
     # Guardar timestamp de 'alertsquid.log'
     Module.check_file_exist(file_log)
-    exit()
     timestamp_file_log_old = int(os.path.getctime(file_log)) # Timestamp old
 
     # Guardar en variable los registros inicial que tiene "alertsquid.log"
@@ -274,9 +278,10 @@ def main():
                     # Formatear timestamp
                     # ...............................................
                     timestamp = float(item.split()[0])
-                    timestamp = time.gmtime(int(timestamp))		           # Convertir en una estructura de tiempo
+                    timestamp = time.localtime(int(timestamp))		           # Convertir en una estructura de tiempo
                     timestamp = time.strftime('%Y/%m/%d %H:%M', timestamp) # Formatear fecha
                     date  = timestamp.split()[0]
+                    hour  = timestamp.split()[0]
                     year  = date.split("/")[0]
                     month = date.split("/")[1]
                     day   = date.split("/")[2]
