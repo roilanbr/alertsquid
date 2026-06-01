@@ -36,22 +36,25 @@ class Module():
 
     # Mostrar Bytes en base 1000 (Bi, KiB, MiB, GiB, TiB) | 1024 (B, KB, MB, GB, TB)
     def parse_bytes(bytes, base=1024):
-        if base == 1000: um = "K"
-        if base == 1024: um = "Ki" 
+        if base == 1000:
+            umk = 'K'; umm = 'M'; umg = 'G'; umt = 'T'
+        if base == 1024:
+            umk = 'Ki'; umm = 'Mi'; umg = 'Gi'; umt = 'Ti'
         
         # Solo para Squid Proxy que usa KB base 1024 según documentación, comentar para lo demas
-        if base == 1024: um = "K"
+        if base == 1024:
+            umk = 'K'; umm = 'M'; umg = 'G'; umt = 'T'
 
         if bytes < base:
             return f"{bytes}_B"
         elif bytes < 1 * (base ** 2):
-            return f"{Module.decimal((bytes / base))}_{um}B"
+            return f"{Module.decimal((bytes / base))}_{umk}B"
         elif bytes < 1 * (base ** 3):
-            return f"{Module.decimal((bytes / base ** 2))}_{um}B"
+            return f"{Module.decimal((bytes / base ** 2))}_{umm}B"
         elif bytes < 1 * (base ** 4):
-            return f"{Module.decimal((bytes / base ** 3))}_{um}B"
+            return f"{Module.decimal((bytes / base ** 3))}_{umg}B"
         elif bytes >= 1 * (base ** 4):
-            return f"{Module.decimal((bytes / base ** 4))}_{um}B"
+            return f"{Module.decimal((bytes / base ** 4))}_{umt}B"
 
     # Contar la lineas que tiene un archivo de texto
     def count_lines(file):

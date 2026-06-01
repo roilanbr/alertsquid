@@ -1,7 +1,6 @@
 trash/
 __init__.py
+src/alertsquid/__pycache__/
 src/alertsquid/alertsquid.conf
 src/alertsquid/ip2name.conf
 src/alertsquid/ip2ignore.conf
-src/alertsquid/__pycache__/
-
